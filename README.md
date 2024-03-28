@@ -20,6 +20,7 @@ Lets take a look inside the `src` folder
 
 SETUP the project
 
+
 - Download this template from github and open it in your favourite editoe.
 - In the root directory craete a `.env` file and add the following env variables
     
@@ -71,4 +72,9 @@ By executing this command you will get migrations and seeders folder along with 
 - to run the server exeute 
     ```
     npm run dev
+    ```
+
+- To create a sequel db you need to run the following command
+    ```
+    npx sequelize db:create
     ```
