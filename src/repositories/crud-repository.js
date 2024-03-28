@@ -21,6 +21,9 @@ class crudRepository{
                     id:data
                 }
             });
+            if(!res){
+                throw new AppError(`Cannot find the airplane with id ${data}`,StatusCodes.NOT_FOUND)
+            }
             return res;
        
     }
