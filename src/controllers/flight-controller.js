@@ -25,7 +25,21 @@ async function createFlight(req,res){
     }
 }
 
+async function getAllFlights(req,res){
+    try{
+        console.log("IN contoll")
+        const flights  = await flightService.getAllFlights(req.query);
+        successResponse.data = flights
+        return res.status(StatusCodes.OK).json(successResponse)
+    }
+    catch(err){
+        errorResponse.error = err
+        res.status(err.statusCode)
+        .json(errorResponse)
+    }
+}
 
 module.exports = {
-    createFlight
+    createFlight,
+    getAllFlights
 }
