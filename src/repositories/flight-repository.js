@@ -5,6 +5,15 @@ class FlightRepository extends crudRepository{
     constructor(){
         super(Flight)
     }
+    async get(data){
+        console.log(res,"df")
+            const res = await Flight.findByPk(data);
+           
+            if(!res)
+        throw new AppError(`Cannot find the airplane with id ${data}`,StatusCodes.NOT_FOUND)
+            return res;
+       
+    }
     async getAllFlights(filter,sort){
         console.log(filter)
         const response = await Flight.findAll({
@@ -37,6 +46,27 @@ class FlightRepository extends crudRepository{
         console.log(response,"zxsf")
         return response;
     }
+    async  updateRemainingSeats(flightId,seats,dec = true){
+        console.log("flightrrr",flightId)
+        const flight = await Flight.findOne({ where: { id: flightId } });
+        if(!flight)
+        console.log("no flight")
+        else
+        console.log("flight")
+        // if(dec){
+        //     console.log("!")
+        //     const response = await flight.decrement('totalSeats',{by:seats})
+        //     console.log(response,"a ")
+        //     return response;
+        // }
+        // else{
+        //     console.log("!")
+        //     const response = await flight.increment('totalSeats',{by:seats})
+        //     return response
+        // }
+    }
 }
+
+
 
 module.exports = FlightRepository

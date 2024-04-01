@@ -28,7 +28,7 @@ async function createFlight(data){
 
 async function getAllFlights(query){
     let customfilter = {};
-    let sortfilter = {};
+    let sortfilter = [];
     const endingTime = " 23:59:00"
     // trips="BLR-DEL"
     if(query.trips){
@@ -80,9 +80,36 @@ async function getAllFlights(query){
     }
 }
 
+async function getFlight(id){
+    try{
+        console.log("in srvic",id)
+        const flight = await flightRepository.get(id);
+        
+        return flight;
+
+    }catch(error){
+        if(error.statusCode ==   StatusCodes.NOT_FOUND){
+            throw new AppError("The flight you requested is not present ",error.statusCode)
+        }
+        throw new AppError("Cannnot fetch  data of  the flight",StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+
+async function updateFlightSeats(data){
+    try{
+    const response = await flightRepository.updateRemainingSeats(data.flightId,data.seats,data.dec);
+    return response
+
+}
+catch(err){
+    throw new AppError("Cannnot fetch  data of  the flight",StatusCodes.INTERNAL_SERVER_ERROR)
+}
+}
 
 
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight,
+    updateFlightSeats
 }

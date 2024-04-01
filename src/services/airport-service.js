@@ -38,6 +38,7 @@ async function getAirports(){
 
 async function  getAirport(id){
     try{
+        console.log("in srvic")
         const airport = await airportrepository.get(id);
         
         return airport;
