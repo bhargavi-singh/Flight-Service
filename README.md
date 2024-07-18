@@ -1,4 +1,4 @@
-This is a ase node js project template which anyone can use as it has been prepared by keeping some of the most important code principles and project management recommendation. feel free to change anything.
+This is a a node js project template which anyone can use as it has been prepared by keeping some of the most important code principles and project management recommendation. feel free to change anything.
 
 `src` -> Inside the src folder all the source code regarding the project will reside , this will not include any kind of tests. (You might want to make seperate tests folder)
 
